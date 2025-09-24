@@ -86,7 +86,7 @@ def classify_traffic_sign(model, image_tensor, classes):
 # ----------------- Main Functionality -----------------
 
 if __name__ == "__main__":
-    detection_model_path = "Yolov8s.pt"  # Replace with your YOLOv8 model path
+    detection_model_path = "weights\Yolov8s.pt"  # Replace with your YOLOv8 model path
     classification_model_path = "Weights\mobilenetv3_v2.pth"  # classification model path
     input_folder = "input folder path"  # Folder containing images
     output_folder = "output folder path"  # Folder to save images with predictions
