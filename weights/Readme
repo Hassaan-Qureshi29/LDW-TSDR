@@ -1,1 +1,27 @@
 
+
+1. yolov8s.pth
+   * Model: YOLOv8-Small
+   * Purpose: Traffic sign detection
+   * Notes: Pretrained YOLOv8s model fine-tuned for detecting traffic signs in real-world conditions.
+
+2. mobilenetv3_base.pth
+   * Model: MobileNetV3
+   * Purpose: Traffic sign classification
+   * Dataset: Initial training on an imbalanced Pakistani traffic sign dataset
+   * Notes: Serves as the baseline model for evaluating improvements after dataset balancing.
+
+3. mobilenetv3_v2.pth
+   * Model: MobileNetV3 (Improved)
+   * Purpose: Traffic sign classification
+   * Dataset: Trained on a balanced Pakistani traffic sign dataset (self-collected)
+   * Performance: Achieved 93.1% accuracy on the local dataset
+   * Notes: Demonstrates significant performance improvement compared to the base model.
+
+4. mobilenetv3_bangladesh.pth
+   * Model: MobileNetV3 (Cross-Dataset Validation)
+   * Purpose: Traffic sign classification with generalization testing
+   * Dataset: Fine-tuned on the Bangladesh traffic sign dataset to validate cross-dataset generalization
+   * Performance: Achieved 95.7% accuracy on the Bangladesh test set
+   * Notes: Highlights the adaptability and generalization capability of the proposed approach across regional datasets.
+
