@@ -14,8 +14,8 @@
 3. mobilenetv3_v2.pth
    * Model: MobileNetV3 (Improved)
    * Purpose: Traffic sign classification
-   * Dataset: Trained on a balanced Pakistani traffic sign dataset (self-collected)
-   * Performance: Achieved 93.1% accuracy on the local dataset
+   * Dataset: Trained on a balanced Pakistani traffic sign dataset 
+   * Performance: Achieved 93.1% accuracy on the local dataset (self-collected)
    * Notes: Demonstrates significant performance improvement compared to the base model.
 
 4. mobilenetv3_bangladesh.pth
