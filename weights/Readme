@@ -12,7 +12,7 @@
 3. mobilenetv3_v2.pth
    * Model: MobileNetV3 (Improved)
    * Purpose: Traffic sign classification
-   * Dataset: Trained on a balanced Pakistani traffic sign dataset 
+   * Dataset: Trained on a balanced Pakistani traffic sign dataset
    * Performance: Achieved 93.1% accuracy on the local dataset (self-collected)
    * Notes: Demonstrates significant performance improvement compared to the base model.
 
@@ -23,3 +23,17 @@
    * Performance: Achieved 95.7% accuracy on the Bangladesh test set
    * Notes: Highlights the adaptability and generalization capability of the proposed approach across regional datasets.
 
+5. yolov8s.onnx
+   * Model: YOLOv8-Small (ONNX optimized)
+   * Purpose: Traffic sign detection in real-time applications
+   * Notes: An ONNX-converted and optimized version of the fine-tuned yolov8s model, enabling faster inference and cross-platform deployment.
+
+6. mobilenetv3.onnx
+   * Model: MobileNetV3 (ONNX optimized)
+   * Purpose: Traffic sign classification
+   * Notes: An ONNX-converted and optimized version of the mobilenetv3_v2 model. Provides lightweight, high-speed inference for embedded or edge-based systems while maintaining the 93.1% accuracy of the original model.
+
+7. Twin(640x180).onnx
+   * Model: TwinLiteNet
+   * Purpose: Lane detection for lane departure warning
+   * Notes: A lightweight convolutional neural network designed for real-time lane segmentation. It provides a robust lane mask that feeds into the custom lane departure warning algorithm, allowing accurate detection of vehicle position relative to lane markings on the road.
