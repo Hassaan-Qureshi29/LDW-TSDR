@@ -6,7 +6,7 @@ from PIL import Image, ImageEnhance, ImageFilter
 # ==========================
 # CONFIGURATION
 # ==========================
-train_dir = r"C:\Users\Dell\Downloads\archive\bd_traffic_signs\test"
+train_dir = "path of dataset folder"
 TARGET_SAMPLES = 250          # total final images per class
 BLUR_SAMPLES   = 20           # how many of the TARGET_SAMPLES should be blurred
 
