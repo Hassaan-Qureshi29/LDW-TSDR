@@ -213,11 +213,11 @@ def compute_iou(boxA, boxB):
     iou = interArea / float(boxAArea + boxBArea - interArea + 1e-6)
     return iou    
 # ----------------- USER CONFIG -----------------
-PTH_CLASSIFIER_PATH = 'mobilenetv3_v2.pth'   # <-- update
-YOLO_MODEL_PATH = 'yolov8s.onnx'             # <-- update (you had this)
-TWINLITE_ONNX_PATH = 'TQ.onnx'               # <-- update
-VIDEO_PATH = "Test.mp4"
-OUTPUT_FILE = "output_processed.avi"
+PTH_CLASSIFIER_PATH = 'weights/mobilenetv3_v2.pth'    
+YOLO_MODEL_PATH = 'weights/yolov8s.onnx'              
+TWINLITE_ONNX_PATH = 'weights/Twin(640x180).onnx'            
+VIDEO_PATH = "Input Video Path"
+OUTPUT_FILE = "Output video Path"
 WRITE_OUTPUT = True
 SHOW_WINDOW = True
 CAM_WIDTH = 640
@@ -368,7 +368,7 @@ def Run_frame(session_twin, frame_bgr, detection_model, classifier_model, mot_tr
         )
 
     # -------------------------------------------------
-    # Lane Segmentation (UNCHANGED)
+    # Lane Segmentation
     # -------------------------------------------------
     inp = lower_half[:, :, ::-1].transpose(2, 0, 1)
     inp = np.expand_dims(inp, 0).astype(np.float32) / 255.0
@@ -384,7 +384,7 @@ def Run_frame(session_twin, frame_bgr, detection_model, classifier_model, mot_tr
     )
 
     # -------------------------------------------------
-    # 🔥 NEW: DIRECTIONAL LANE MASK EXPANSION 🔥
+    # DIRECTIONAL LANE MASK EXPANSION
     # -------------------------------------------------
     lane_bin = (ll_predict_resized > 0).astype(np.uint8) * 255
     hh, ww = lane_bin.shape
@@ -455,13 +455,13 @@ def Run_frame(session_twin, frame_bgr, detection_model, classifier_model, mot_tr
     expanded = cv2.morphologyEx(expanded, cv2.MORPH_CLOSE, kernel)
 
     # -------------------------------------------------
-    # Visualization (UNCHANGED)
+    # Visualization
     # -------------------------------------------------
     lower_half[expanded > 0] = [0, 255, 0]
     output_img = np.vstack((upper_half, lower_half))
 
     # -------------------------------------------------
-    # Lane Detection (CANNY → HOUGH → SLOPE) UNCHANGED
+    # Lane Detection (CANNY → HOUGH → SLOPE)
     # -------------------------------------------------
     smoothed = cv2.GaussianBlur(expanded, (5, 5), 0)
     edges = cv2.Canny(smoothed, 50, 150)
@@ -581,7 +581,7 @@ def Run_frame(session_twin, frame_bgr, detection_model, classifier_model, mot_tr
     return output_img
 
 
-# ----------------- RealSense streaming and main -----------------
+# ----------------- streaming and main -----------------
 def main():
     print("Loading models...")
     classifier_model = load_classification_model(
@@ -631,7 +631,7 @@ def main():
         if not ret:
             break
 
-        # ✅ RESIZE FIRST (IMPORTANT)
+        # RESIZE FIRST
         frame = cv2.resize(frame, (CAM_WIDTH, CAM_HEIGHT))
 
         t0 = time.time()
@@ -653,7 +653,7 @@ def main():
             cv2.imshow("Video LDW + TSD", out_img)
 
         if WRITE_OUTPUT and writer is not None:
-            writer.write(out_img)   # ✅ WRITE RESIZED FRAME
+            writer.write(out_img)   # WRITE RESIZED FRAME
 
         if cv2.waitKey(1) & 0xFF in [27, ord('q')]:
             break
