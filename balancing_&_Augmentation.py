@@ -8,7 +8,7 @@ from PIL import Image, ImageEnhance, ImageFilter
 # ==========================
 train_dir = "path of dataset folder"
 TARGET_SAMPLES = 250          # total final images per class
-BLUR_SAMPLES   = 20           # how many of the TARGET_SAMPLES should be blurred
+BLUR_SAMPLES   = 20           
 
 # ==========================
 # AUGMENTATION FUNCTIONS
@@ -120,4 +120,4 @@ for folder in class_folders:
     print(f"[{os.path.basename(folder)}] Balanced to {TARGET_SAMPLES} images "
           f"(including {BLUR_SAMPLES} blurred).")
 
-print("✅ Dataset balancing and blur augmentation complete!")
+print("Dataset balancing and blur augmentation complete!")
